@@ -44,7 +44,25 @@
     </header>
     <main class="container mt-5 mb-5">
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
-        <div class="row">
+        <?php
+            include("../database.php");
+
+            $sql_theloai = "SELECT COUNT(ma_tloai) AS count_theloai FROM theloai";
+            $result_theloai = $conn->query($sql_theloai);
+            $count_theloai = $result_theloai->fetch_assoc()['count_theloai'];
+
+
+            $sql_tacgia = "SELECT COUNT(ma_tgia) AS count_tacgia FROM tacgia";
+            $result_tacgia = $conn->query($sql_tacgia);
+            $count_tacgia = $result_tacgia->fetch_assoc()['count_tacgia'];
+
+            $sql_baiviet = "SELECT COUNT(ma_bviet) AS count_baiviet FROM baiviet";
+            $result_baiviet = $conn->query($sql_baiviet);
+            $count_baiviet = $result_baiviet->fetch_assoc()['count_baiviet'];
+
+        ?>
+
+<div class="row">
             <div class="col-sm-3">
                 <div class="card mb-2" style="width: 100%;">
                     <div class="card-body">
@@ -67,7 +85,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            10
+                            <?php echo $count_theloai; ?>
                         </h5>
                     </div>
                 </div>
@@ -81,7 +99,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            20
+                            <?php echo $count_tacgia; ?>
                         </h5>
                     </div>
                 </div>
@@ -95,7 +113,7 @@
                         </h5>
 
                         <h5 class="h1 text-center">
-                            110
+                        <?php echo $count_baiviet; ?>
                         </h5>
                     </div>
                 </div>
