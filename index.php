@@ -86,7 +86,7 @@
                     <img src="images/songs/csmt.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="" class="text-decoration-none">Cuộc sống mến thương</a>
+                            <a href="detail5.php" class="text-decoration-none">	Ôi Cuộc Sống Mến Thương</a>
                         </h5>
                     </div>
                 </div>

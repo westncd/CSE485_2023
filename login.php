@@ -1,3 +1,26 @@
+<?php
+
+$accounts = [
+    'admin' => ['username' => 'admin', 'password' => 'admin123', 'role' => 'admin'],
+    'user' => ['username' => 'user', 'password' => 'user123', 'role' => 'user']
+];
+
+// Lấy dữ liệu từ form
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    // Kiểm tra tài khoản đăng nhập
+    if (isset($accounts[$username]) && $accounts[$username]['password'] === $password) {
+        // Đăng nhập thành công
+        $_SESSION['username'] = $username;
+        $_SESSION['role'] = $accounts[$username]['role'];
+        header("Location: ./admin/index.php");
+        exit();
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,19 +78,19 @@
                         <form>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="username" >
+                                <input type="text" class="form-control" name="username" formmethod="POST" placeholder="username" >
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                                <input type="text" class="form-control" placeholder="password" >
+                                <input type="text" class="form-control" name="password" formmethod="POST" placeholder="password" >
                             </div>
                             
                             <div class="row align-items-center remember">
                                 <input type="checkbox">Remember Me
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Login" class="btn float-end login_btn">
+                                <input type="submit" value="Login" formmethod="POST" class="btn float-end login_btn">
                             </div>
                         </form>
                     </div>
