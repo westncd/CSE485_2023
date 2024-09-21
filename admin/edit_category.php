@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php
+        // include("./category.php");
+        include("../database.php");
+    ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,22 +51,41 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
-                <form action="process_add_category.php" method="post">
+                <?php
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                        $ten_tloai = $_POST['txtCatName'];
+                        $ma_tloai = $_POST['txtCatID'];
+                    }
+
+                    $query = 'SELECT * FROM theloai WHERE ma_tloai = 1';
+                    $result = mysqli_query($conn, $query);
+
+
+                    if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo '<form action="process_add_category.php" method="post"><div class="input-group mt-3 mb-3"><span class="input-group-text" id="lblCatId">Mã thể loại</span><input type="text" formmethod="post" class="form-control" name="txtCatId" readonly value="'.$row["ma_tloai"].'"></div><div class="input-group mt-3 mb-3"><span class="input-group-text" id="lblCatName">Tên thể loại</span><input type="text" formmethod="post" class="form-control" name="txtCatName" value = "'.$row["ten_tloai"].'"></div><div class="form-group  float-end "><input type="submit" formmethod="post" value="Lưu lại" class="btn btn-success"><a href="category.php" class="btn btn-warning ">Quay lại</a></div></form>';
+                            }
+                            
+                    }
+                    
+                ?>
+
+                <!-- <form action="process_add_category.php" method="post">
                 <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã thể loại</span>
-                        <input type="text" class="form-control" name="txtCatId" readonly value="1">
+                        <input type="text" formmethod="post" class="form-control" name="txtCatId" readonly value="1">
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" class="form-control" name="txtCatName" value = "Nhạc trữ tình">
+                        <input type="text" formmethod="post" class="form-control" name="txtCatName" value = "Nhạc trữ tình">
                     </div>
 
                     <div class="form-group  float-end ">
-                        <input type="submit" value="Lưu lại" class="btn btn-success">
+                        <input type="submit" formmethod="post" value="Lưu lại" class="btn btn-success">
                         <a href="category.php" class="btn btn-warning ">Quay lại</a>
                     </div>
-                </form>
+                </form> -->
             </div>
         </div>
     </main>
