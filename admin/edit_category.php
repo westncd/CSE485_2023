@@ -57,7 +57,7 @@
                         $ma_tloai = $_POST['txtCatID'];
                     }
 
-                    $query = 'SELECT * FROM theloai WHERE ma_tloai = 1';
+                    $query = 'SELECT * FROM theloai WHERE ma_tloai = 2';
                     $result = mysqli_query($conn, $query);
 
 

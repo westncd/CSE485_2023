@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="css/style_login.css">
+
+
 </head>
 <body>
     <header>
@@ -57,16 +59,28 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
-                        include("../database.php");
-                        $query = "SELECT * FROM theloai;";
-                        $result = mysqli_query( $conn, $query );
-                        if ($result->num_rows > 0) {
-                            while($row = $result->fetch_assoc()) {
-                                echo '<tr><th scope="row">'.$row["ma_tloai"].'</th><td>'.$row["ten_tloai"].'</td><td><a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a></td><td><a href=""><i class="fa-solid fa-trash"></i></a></td></tr>';
-                            }            
-                        }
-                    ?>
+                    <form action="" method="GET">
+                        <?php
+                            include("../database.php");
+                            if (isset($_GET['this_id'])) {
+                                $this_id = $_GET['this_id'];
+                                $sql = "DELETE FROM theloai WHERE ma_tloai = '$this_id'";
+                                if (mysqli_query($conn, $sql)) {
+                                    // Redirect after deletion
+                                    header("Location: http://localhost/btth01/admin/category.php");
+                                    exit();
+                                }
+                            }
+                            $query = "SELECT * FROM theloai;";
+                                $result = mysqli_query($conn, $query);
+                        
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo '<tr><th scope="row">'.$row["ma_tloai"].'</th><td>'.$row["ten_tloai"].'</td><td><a href="edit_category.php?id=1"><i class="fa-solid fa-pen-to-square"></i></a></td><td><a href="category.php?this_id='.$row['ma_tloai'].'" ><i class="fa-solid fa-trash"></i></a></td></tr>';
+                                    }            
+                                }
+                        ?>
+                    </form>
                     </tbody>
                 </table>
             </div>
