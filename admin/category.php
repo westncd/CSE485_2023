@@ -15,21 +15,37 @@ $result = mysqli_query($conn, $query);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
 </head>
 <body>
-    <header>
+<header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
                 <div class="h3">
                     <a class="navbar-brand" href="#">Administration</a>
                 </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="./">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="../index.php">Website</a></li>
-                        <li class="nav-item"><a class="nav-link active fw-bold" href="category.php">Categories</a></li>
-                    </ul>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.php">Trang ngoài</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold" href="category.php">Thể loại</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="author.php">Tác giả</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="article.php">Bài viết</a>
+                    </li>
+                </ul>
                 </div>
             </div>
         </nav>
+
     </header>
 
     <main class="container mt-5 mb-5">
@@ -52,9 +68,9 @@ $result = mysqli_query($conn, $query);
                             while ($row = mysqli_fetch_assoc($result)){
                                 echo '<tr><th scope="row">'.$row["ma_tloai"].'</th><td>'.$row["ten_tloai"].'</td><td><a href="edit_category.php?id=' . $row["ma_tloai"] . '"><i class="fa-solid fa-pen-to-square"></i></a></td><td><a href="category.php?id='.$row['ma_tloai'].'" ><i class="fa-solid fa-trash"></i></a></td></tr>';
 
-                                if (isset($_GET['this_id'])) {
-                                    $this_id = $_GET['this_id'];
-                                    $sql = "DELETE FROM theloai WHERE ma_tloai = '$this_id'";
+                                if (isset($_GET['id'])) {
+                                    $id = $_GET['id'];
+                                    $sql = "DELETE FROM theloai WHERE ma_tloai = '$id'";
                                     if (mysqli_query($conn, $sql)) {
                                         // Redirect after deletion
                                         header("Location: http://localhost/btth01/admin/category.php");
