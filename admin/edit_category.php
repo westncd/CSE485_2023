@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <?php
-        include("../database.php"); // Include database connection
+        include("../database.php");
     ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,9 +54,7 @@
                 $ma_tloai = '';
                 $ten_tloai = '';
                 if (isset($_GET['id'])) {
-                    $id = mysqli_real_escape_string($conn, $_GET['id']); // Secure the ID
-                    
-                    // Fetch category details based on 'id'
+                    $id = mysqli_real_escape_string($conn, $_GET['id']); 
                     $query = "SELECT * FROM theloai WHERE ma_tloai = '$id'";
                     $result = mysqli_query($conn, $query);
                     
