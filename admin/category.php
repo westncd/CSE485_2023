@@ -51,7 +51,7 @@ $result = mysqli_query($conn, $query);
     <main class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Categories</h3>
+                <h3 class="text-center text-uppercase fw-bold">Thể loại</h3>
                 <a href="add_category.php" class="btn btn-success mb-3">Thêm thể loại</a>
                 <table class="table table-bordered">
                     <thead>
@@ -78,8 +78,6 @@ $result = mysqli_query($conn, $query);
                                     }
                                 }
                             }
-                        } else {
-                            echo "<tr><td colspan='4'>No categories found</td></tr>";
                         }
                         
                         ?>
