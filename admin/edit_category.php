@@ -63,9 +63,9 @@
 
                     if ($result->num_rows > 0) {
                             while($row = $result->fetch_assoc()) {
-                                echo '<form action="process_add_category.php" method="post"><div class="input-group mt-3 mb-3"><span class="input-group-text" id="lblCatId">Mã thể loại</span><input type="text" formmethod="post" class="form-control" name="txtCatId" readonly value="'.$row["ma_tloai"].'"></div><div class="input-group mt-3 mb-3"><span class="input-group-text" id="lblCatName">Tên thể loại</span><input type="text" formmethod="post" class="form-control" name="txtCatName" value = "'.$row["ten_tloai"].'"></div><div class="form-group  float-end "><input type="submit" formmethod="post" value="Lưu lại" class="btn btn-success"><a href="category.php" class="btn btn-warning ">Quay lại</a></div></form>';
+                                echo '<form action="process_add_category.php" method="post"><div class="input-group mt-3 mb-3"><span class="input-group-text" id="lblCatId">Mã thể loại</span><input type="text" formmethod="post" class="form-control" name="txtCatId" value="'.$row["ma_tloai"].'"></div><div class="input-group mt-3 mb-3"><span class="input-group-text" id="lblCatName">Tên thể loại</span><input type="text" formmethod="post" class="form-control" name="txtCatName" value = "'.$row["ten_tloai"].'"></div><div class="form-group  float-end "><input type="submit" formmethod="post" value="Lưu lại" class="btn btn-success"><a href="category.php" class="btn btn-warning ">Quay lại</a></div></form>';
                             }
-                            
+
                     }
                     
                 ?>
