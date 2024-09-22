@@ -1,9 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="en">
+<?php
+    include("../database.php");
+        if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["txttieude"]) && isset($_GET["txttenbaihat"]) && isset($_GET["txtmatheloai"]) && isset($_GET["txttomtat"]) && isset($_GET["txtmatacgia"]) && isset($_GET["ngayviet"])){
+            $newtieude = $_GET["txttieude"];
+            $newbaihat = $_GET["txttenbaihat"];
+            $newmatheloai = $_GET["txtmatheloai"];
+            $newtomtat = $_GET["txttomtat"];
+            $newmatacgia = $_GET["txtmatacgia"];
+            $newngayviet = $_GET["ngayviet"];
+            $query = "INSERT INTO baiviet (tieude,ten_bhat,ma_tloai,tomtat,ma_tgia,ngayviet) VALUES ('$newtieude','$newbaihat','$newmatheloai','$newtomtat','$newmatacgia','$newngayviet' )";
+            mysqli_query($conn, $query);
+            header("location: article.php");
+            }
+            ?>
 <head>
-    <?php
-        include("../database.php");
-    ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -49,58 +61,38 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <a href="add_article.php" class="btn btn-success">Thêm mới</a>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Tiêu đề</th>
-                            <th scope="col">Tên bài hát</th>
-                            <th scope="col">Mã TLoại</th>
-                            <th scope="col">Tóm tắt</th>
-                            <th scope="col">Mã TGiả</th>
-                            <th scope="col">Ngày viết</th>
-                            <th>Sửa</th>
-                            <th>Xóa</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    $sql = "SELECT * FROM baiviet";  // Fetch all categories from 'baiviet' table
-                    $result = $conn->query($sql);
-                    if ($result && $result->num_rows > 0) {
+                <h3 class="text-center text-uppercase fw-bold">Thêm mới Bài viết</h3>
+                <form method="GET">
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lbltieude">Tiêu đề</span>
+                        <input type="text" formmethod="GET" class="form-control" name="txttieude" >
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lbltenbaihet">Tên bài hát</span>
+                        <input type="text" formmethod="GET" class="form-control" name="txttenbaihat" >
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblmatheloai">Mã thể loại</span>
+                        <input type="text" formmethod="GET" class="form-control" name="txtmatheloai" >
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lbltomtat">Tóm tắt</span>
+                        <input type="text" formmethod="GET" class="form-control" name="txttomtat" >
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblmatacgia">Mã tác giả</span>
+                        <input type="text" formmethod="GET" class="form-control" name="txtmatacgia" >
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblngayviet">Ngày Viết</span>
+                        <input type="date" formmethod="GET" class="form-control" name="ngayviet" >
+                    </div>
+                    <div class="form-group  float-end ">
+                        <input type="submit" formmethod="GET" value="Thêm" class="btn btn-success">
                         
-                        while($row = $result->fetch_assoc()) {
-                            echo '<tr>';
-                            echo '<th scope="row">'.$row["ma_bviet"].'</th>';  
-                            echo '<td>'.$row["tieude"].'</td>';  
-                            echo '<td>'.$row["ten_bhat"].'</td>';
-                            echo '<td>'.$row["ma_tloai"].'</td>';
-                            echo '<td>'.$row["tomtat"].'</td>';
-                            echo '<td>'.$row["ma_tgia"].'</td>';
-                            echo '<td>'.$row["ngayviet"].'</td>';
-
-                            // Edit button, dynamically linking to edit page with the correct category ID
-                            echo '<td><a href="edit_article.php?id='.$row["ma_bviet"].'"><i class="fa-solid fa-pen-to-square"></i></a></td>';
-                            // Delete button, dynamically linking to delete action with the correct category ID
-                            echo '<td><a href="article.php?delete_id='.$row['ma_bviet'].'"><i class="fa-solid fa-trash"></i></a></td>';
-                            if (isset($_GET['delete_id'])) {
-                                $id = $_GET['delete_id'];
-                                $sql = "DELETE FROM baiviet WHERE ma_bviet = '$id'";
-                                if (mysqli_query($conn, $sql)) {
-                                    // Redirect after deletion
-                                    header("Location: article.php");
-                                    exit();
-                                }
-                            }
-                            echo '</tr>';
-                            }
-                        } else {
-                            echo "<tr><td colspan='4'>Không có bài viết nào.</td></tr>";  // Message if no categories found
-                        }
-                    ?>
-                    </tbody>
-                </table>
+                        <a href="article.php" class="btn btn-warning ">Quay lại</a>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
