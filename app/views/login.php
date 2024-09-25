@@ -1,36 +1,18 @@
-<?php
 
-$accounts = [
-    'admin' => ['username' => 'admin', 'password' => 'admin123', 'role' => 'admin'],
-    'user' => ['username' => 'user', 'password' => 'user123', 'role' => 'user']
-];
-
-// Lấy dữ liệu từ form
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    // Kiểm tra tài khoản đăng nhập
-    if (isset($accounts[$username]) && $accounts[$username]['password'] === $password) {
-        // Đăng nhập thành công
-        $_SESSION['username'] = $username;
-        $_SESSION['role'] = $accounts[$username]['role'];
-        header("Location: ./admin/index.php");
-        exit();
-    }
-}
-?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php 
+        require_once '../controllers/user_controller.php';
+    ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music for Life</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="css/style_login.css">
+    <link rel="stylesheet" href="../../public/css/style_login.css">
 </head>
 <body>
     <header>
@@ -38,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="container-fluid">
                 <div class="my-logo">
                     <a class="navbar-brand" href="#">
-                        <img src="images/logo2.png" alt="" class="img-fluid">
+                        <img src="../../public/images/logo2.png" alt="" class="img-fluid">
                     </a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="./">Trang chủ</a>
+                    <a class="nav-link" aria-current="page" href="../../public/index.php">Trang chủ</a>
                     </li>
                     <li class="nav-item">
                     <a class="nav-link active" href="./login.php">Đăng nhập</a>

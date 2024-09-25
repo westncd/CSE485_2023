@@ -1,9 +1,15 @@
+<?php 
+    include(__DIR__ . '/../../controllers/category_controller.php');
+    // include('../../../config/database.php');
+    $controller = new CategoryController();
+    $ma_tloai = $controller->getCatID();
+    $ten_tloai = $controller->getCatNameByID();
+    $result = $controller->CategoryEdit($ma_tloai, $ten_tloai);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php
-        include("../database.php");
-    ?>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +34,7 @@
                             <a class="nav-link" aria-current="page" href="./">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="../index.php">Trang ngoài</a>
+                            <a class="nav-link" href="../../../public/index.php">Trang ngoài</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active fw-bold" href="category.php">Thể loại</a>
@@ -49,36 +55,7 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
-                
-                <?php
-                $ma_tloai = '';
-                $ten_tloai = '';
-                if (isset($_GET['id'])) {
-                    $id = mysqli_real_escape_string($conn, $_GET['id']); 
-                    $query = "SELECT * FROM theloai WHERE ma_tloai = '$id'";
-                    $result = mysqli_query($conn, $query);
-                    
-                    if ($result && mysqli_num_rows($result) > 0) {
-                        $row = mysqli_fetch_assoc($result);
-                        $ma_tloai = $row['ma_tloai'];
-                        $ten_tloai = $row['ten_tloai'];
-                    }
-                }
-                if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['txtCatId']) && isset($_POST['txtCatName'])) {
-                    $ma_tloai = mysqli_real_escape_string($conn, $_POST['txtCatId']);
-                    $ten_tloai = mysqli_real_escape_string($conn, $_POST['txtCatName']);
-                    $sql = "UPDATE theloai SET ten_tloai = '$ten_tloai' WHERE ma_tloai = '$ma_tloai'";
-                    if (mysqli_query($conn, $sql)) {
-                        header("Location: category.php");
-                        exit();
-                    } else {
-                        echo "Error updating record: " . mysqli_error($conn);
-                    }
-                }
-                ?>
-
-                <!-- Display the form with existing data -->
-                <form action="edit_category.php?id=<?php echo $ma_tloai; ?>" method="post">
+                <form action="edit_category_view.php?id=<?php echo $ma_tloai; ?>" method="post">
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatId">Mã thể loại</span>
                         <input type="text" class="form-control" name="txtCatId" value="<?php echo htmlspecialchars($ma_tloai); ?>" readonly>
@@ -89,7 +66,7 @@
                     </div>
                     <div class="form-group float-end">
                         <input type="submit" value="Lưu lại" class="btn btn-success">
-                        <a href="category.php" class="btn btn-warning">Quay lại</a>
+                        <a href="./category_view.php" class="btn btn-warning">Quay lại</a>
                     </div>
                 </form>
             </div>
