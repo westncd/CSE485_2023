@@ -1,7 +1,5 @@
 <?php 
     include(__DIR__ . '/../../controllers/category_controller.php');
-
-
     $controller = new CategoryController();
     $result = $controller->CategoryList();
     $controller->CategoryDel();
@@ -55,7 +53,7 @@
             <div class="row">
                 <div class="col-sm">
                     <h3 class="text-center text-uppercase fw-bold">Thể loại</h3>
-                    <a href="add_category.php" class="btn btn-success mb-3">Thêm thể loại</a>
+                    <a href="add_category_view.php" class="btn btn-success mb-3">Thêm thể loại</a>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -69,7 +67,7 @@
                             <?php
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)){
-                                    echo '<tr><th scope="row">'.$row["ma_tloai"].'</th><td>'.$row["ten_tloai"].'</td><td><a href="edit_category.php?id=' . $row["ma_tloai"] . '"><i class="fa-solid fa-pen-to-square"></i></a></td><td><a href="category_view.php?id='.$row['ma_tloai'].'" ><i class="fa-solid fa-trash"></i></a></td></tr>';
+                                    echo '<tr><th scope="row">'.$row["ma_tloai"].'</th><td>'.$row["ten_tloai"].'</td><td><a href="edit_category_view.php?id=' . $row["ma_tloai"] . '"><i class="fa-solid fa-pen-to-square"></i></a></td><td><a href="category_view.php?id='.$row['ma_tloai'].'" ><i class="fa-solid fa-trash"></i></a></td></tr>';
                                 }
                             }
 

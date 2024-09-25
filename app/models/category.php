@@ -13,5 +13,29 @@ class Category {
             header('../views/admin/category_view.php');
         }
     }
+    
+    public static function addCategory($conn, $ten_tloai) {
+        $query = "INSERT INTO theloai(ten_tloai) VALUES ('$ten_tloai')";
+        
+        if ($conn->query($query)) {
+            header('Location: ./category_view.php');
+            exit; 
+        }
+    }
+
+    public static function updateCategory($conn, $ma_tloai , $ten_tloai){
+        $query = "UPDATE theloai SET ten_tloai = '$ten_tloai' WHERE ma_tloai = '$ma_tloai'";
+        if (mysqli_query($conn, $query)) {
+            header("Location: ./category_view.php");
+            exit;
+        }
+    }
+
+    public static function getCategoryByID($conn, $id){
+        $query = "SELECT * FROM theloai WHERE ma_tloai = '$id'";
+        $result = mysqli_query($conn, $query);
+        return $result;
+    }
+    
 }
 ?>
