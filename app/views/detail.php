@@ -1,9 +1,7 @@
 <?php 
     require_once '../controllers/article_controller.php';
-
     $controller = new ArticleController();
-    $result = $controller->showArticleDetail('Cây và gió');
-
+    $result = $controller->showArticleDetail(urldecode($_GET['song']));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,7 +46,50 @@
     <main class="container mt-5">
                 <div class="row mb-5">
                     <div class="col-sm-4">
-                        <img src="../../public/images/songs/cayvagio.jpg" class="img-fluid" alt="...">
+                        <?php
+                            $songName = urldecode($_GET['song']);
+                            if($songName == 'Cây và gió'){
+                                echo '<img src="../../public/images/songs/cayvagio.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'Ôi Cuộc Sống Mến Thương'){
+                                echo '<img src="../../public/images/songs/csmt.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'Lòng mẹ'){
+                                echo '<img src="../../public/images/songs/longme.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'Phôi pha'){
+                                echo '<img src="../../public/images/songs/phoipha.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'Nơi tình yêu bắt đầu'){
+                                echo '<img src="../../public/images/songs/noitinhyeubatdau.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'Vết mưa'){
+                                echo '<img src="../../public/images/songs/vetmua.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'Quê hương'){
+                                echo '<img src="../../public/images/songs/quehuong.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'Đất nước'){
+                                echo '<img src="../../public/images/songs/datnuoc.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'Hard Rock Hallelujah'){
+                                echo '<img src="../../public/images/songs/hardrock.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'The Unforgiven'){
+                                echo '<img src="../../public/images/songs/TheUnforgiven.jpg"" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == "Love Me Like There's No Tomorrow"){
+                                echo '<img src="../../public/images/songs/loveme.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == "I\'m stronger "){
+                                echo '<img src="../../public/images/songs/stronger.jpg" class="img-fluid" alt="...">';
+                            }
+                            elseif($songName == 'Người thầy'){
+                                echo '<img src="../../public/images/songs/nguoithay.jpg" class="img-fluid" alt="...">';
+                            }
+                            
+                            ?>
+                            <!-- <img src="../../public/images/songs/noitinhyeubatdau.jpg" class="img-fluid" alt="..."> -->
                     </div>
                     <?php
                             if ($result->num_rows > 0) {
