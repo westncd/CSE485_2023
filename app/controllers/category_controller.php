@@ -11,7 +11,6 @@
 
         public function CategoryDel(){
             $conn = ConnectToDatabase();
-            
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
                 Category::deleteCategory($conn, $id);

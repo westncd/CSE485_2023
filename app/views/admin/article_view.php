@@ -2,7 +2,7 @@
     include(__DIR__ . '/../../controllers/article_controller.php');
     $controller = new ArticleController();
     $result = $controller->ArticleList();
-    // $controller->AuthorDel();
+    $controller->ArticleDel();
 ?>
 
     <!DOCTYPE html>

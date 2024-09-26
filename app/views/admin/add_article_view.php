@@ -1,6 +1,7 @@
 <?php 
-    include(__DIR__ . '/../../controllers/category_controller.php');
-
+    include(__DIR__ . '/../../controllers/article_controller.php');
+    $controller = new ArticleController();
+    $controller->ArticleAdd();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,51 +53,51 @@
         <div class="row">
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
-                <form method="GET">
+                <form method="POST">
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tiêu đề</span>
-                        <input type="text" formmethod="GET" class="form-control" name="txtTitle" >
+                        <input type="text" formmethod="POST" class="form-control" name="txtTitle" required>
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên bài hát</span>
-                        <input type="text" formmethod="GET" class="form-control" name="txtSongName" >
+                        <input type="text" formmethod="POST" class="form-control" name="txtSongName" required>
                     </div>                    
                     
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" formmethod="GET" class="form-control" name="txtCatName" >
+                        <input type="text" formmethod="POST" class="form-control" name="txtCatName" required>
                     </div>                    
                     
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên tác giả</span>
-                        <input type="text" formmethod="GET" class="form-control" name="txtAuthName" >
+                        <input type="text" formmethod="POST" class="form-control" name="txtAuthName" required>
                     </div>                    
                                      
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Ngày viết</span>
-                        <input type="date" formmethod="GET" class="form-control" name="dateOfwriting" >
+                        <input type="date" formmethod="POST" class="form-control" name="dateOfwriting" required>
                     </div>  
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Hình ảnh</span>
-                        <input type="file" formmethod="GET" class="form-control" name="songIMG" >
+                        <input type="text" formmethod="POST" class="form-control" name="songIMG" required >
                     </div>
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tóm tắt</span>
-                        <input type="text" formmethod="GET" class="form-control" name="Summary" >
+                        <input type="text" formmethod="POST" class="form-control" name="Summary" required>
                     </div>     
 
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Nội dung</span>
-                        <input type="text" formmethod="GET" class="form-control" name="Content" >
+                        <input type="text" formmethod="POST" class="form-control" name="Content" required>
                     </div>      
 
                     <div class="form-group  float-end ">
-                        <input type="submit" formmethod="GET" value="Thêm" class="btn btn-success">
-                        <a href="./category_view.php" class="btn btn-warning ">Quay lại</a>
+                        <input type="submit" formmethod="POST" value="Thêm" class="btn btn-success">
+                        <a href="./article_view.php" class="btn btn-warning ">Quay lại</a>
                     </div>
                 </form>
             </div>

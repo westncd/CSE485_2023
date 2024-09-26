@@ -16,7 +16,6 @@ class Author {
     
     public static function addAuthor($conn, $ten_tgia) {
         $query = "INSERT INTO tacgia(ten_tgia) VALUES ('$ten_tgia')";
-        
         if ($conn->query($query)) {
             header('Location: ./author_view.php');
             exit; 
@@ -33,6 +32,12 @@ class Author {
 
     public static function getAuthorByID($conn, $id){
         $query = "SELECT * FROM tacgia WHERE ma_tgia = '$id'";
+        $result = mysqli_query($conn, $query);
+        return $result;
+    }
+
+    public static function getAuthorByName($conn, $ten_tgia){
+        $query = "SELECT * FROM tacgia WHERE ma_tgia = '$ten_tgia'";
         $result = mysqli_query($conn, $query);
         return $result;
     }

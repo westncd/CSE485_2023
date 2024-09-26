@@ -11,7 +11,6 @@
 
         public function AuthorDel(){
             $conn = ConnectToDatabase();
-            
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
                 Author::deleteAuthor($conn, $id);
@@ -41,7 +40,6 @@
             if (isset($_GET['id'])) {
                 $id = mysqli_real_escape_string($conn, $_GET['id']); 
                 $result = Author::getAuthorByID($conn, $id);
-                
                 if ($result && mysqli_num_rows($result) > 0) {
                     $row = mysqli_fetch_assoc($result);
                     $ma_tgia = $row['ma_tgia'];
