@@ -43,7 +43,7 @@
                             <a class="nav-link active fw-bold" href="./author_view.php">Tác giả</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="article.php">Bài viết</a>
+                            <a class="nav-link" href="./article_view.php">Bài viết</a>
                         </li>
                     </ul>
                 </div>

@@ -1,7 +1,6 @@
 <?php 
     include(__DIR__ . '/../../controllers/category_controller.php');
-    $controller = new CategoryController();
-    $result = $controller->CategoryAdd();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,13 +33,13 @@
                         <a class="nav-link" href="../../../public/index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="./category_view.php">Thể loại</a>
+                        <a class="nav-link" href="./category_view.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="./author_view.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./article_view.php">Bài viết</a>
+                        <a class="nav-link  active fw-bold" href="./article_view.php">Bài viết</a>
                     </li>
                 </ul>
                 </div>
@@ -54,11 +53,46 @@
             <div class="col-sm">
                 <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
                 <form method="GET">
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tiêu đề</span>
+                        <input type="text" formmethod="GET" class="form-control" name="txtTitle" >
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên bài hát</span>
+                        <input type="text" formmethod="GET" class="form-control" name="txtSongName" >
+                    </div>                    
+                    
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên thể loại</span>
                         <input type="text" formmethod="GET" class="form-control" name="txtCatName" >
+                    </div>                    
+                    
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
+                        <input type="text" formmethod="GET" class="form-control" name="txtAuthName" >
+                    </div>                    
+                                     
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Ngày viết</span>
+                        <input type="date" formmethod="GET" class="form-control" name="dateOfwriting" >
+                    </div>  
 
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Hình ảnh</span>
+                        <input type="file" formmethod="GET" class="form-control" name="songIMG" >
                     </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tóm tắt</span>
+                        <input type="text" formmethod="GET" class="form-control" name="Summary" >
+                    </div>     
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Nội dung</span>
+                        <input type="text" formmethod="GET" class="form-control" name="Content" >
+                    </div>      
 
                     <div class="form-group  float-end ">
                         <input type="submit" formmethod="GET" value="Thêm" class="btn btn-success">
