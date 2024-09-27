@@ -92,7 +92,7 @@
                     </div>
                     <div class="form-group float-end">
                         <input type="submit" value="Lưu lại" class="btn btn-success">
-                        <a href="./author_view.php" class="btn btn-warning">Quay lại</a>
+                        <a href="./article_view.php" class="btn btn-warning">Quay lại</a>
                     </div>
                 </form>
             </div>
