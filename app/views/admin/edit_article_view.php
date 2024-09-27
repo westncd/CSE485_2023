@@ -1,9 +1,8 @@
 <?php 
-    include(__DIR__ . '/../../controllers/author_controller.php');
-    $controller = new AuthorController();
-    $ma_tgia = $controller->getAuthorID();
-    $ten_tgia = $controller->getAuthorNameByID();
-    $result = $controller->AuthorEdit();
+    include(__DIR__ . '/../../controllers/article_controller.php');
+    $controller = new ArticleController();
+    $row = $controller->ArticleDetail();
+    $controller->ArticleEdit();
 ?>
 
 <!DOCTYPE html>
@@ -39,10 +38,10 @@
                             <a class="nav-link " href="./category_view.php">Thể loại</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active fw-bold" href="./author_view.php">Tác giả</a>
+                            <a class="nav-link " href="./author_view.php">Tác giả</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./article_view.php">Bài viết</a>
+                            <a class="nav-link active fw-bold" href="./article_view.php">Bài viết</a>
                         </li>
                     </ul>
                 </div>
@@ -53,15 +52,43 @@
     <main class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
-                <form action="edit_author_view.php?id=<?php echo $ma_tgia; ?>" method="post">
+                <h3 class="text-center text-uppercase fw-bold">Sửa thông tin bài viết</h3>
+                <form method="POST" action="edit_article_view.php">
                     <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatId">Mã tác giả</span>
-                        <input type="text" class="form-control" name="txtAuthId" value="<?php echo htmlspecialchars($ma_tgia); ?>" readonly>
+                        <span class="input-group-text" id="lblCatId">Mã bài viết</span>
+                        <input type="text" class="form-control"  name="txtArtcleID" value="<?php echo htmlspecialchars($row['ma_bviet']); ?>" readonly>
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tiêu đề</span>
+                        <input type="text" class="form-control"  name="txtTitle" value="<?php echo htmlspecialchars($row['tieude']); ?>">
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên bài hát</span>
+                        <input type="text" class="form-control"  name="txtSongName" value="<?php echo htmlspecialchars($row['ten_bhat']); ?>">
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên thể loại</span>
+                        <input type="text" class="form-control"  name="txtCatName" value="<?php echo htmlspecialchars($row['ten_tloai']); ?>">
                     </div>
                     <div class="input-group mt-3 mb-3">
                         <span class="input-group-text" id="lblCatName">Tên tác giả</span>
-                        <input type="text" class="form-control" name="txtAuthName" value="<?php echo htmlspecialchars($ten_tgia); ?>" required>
+                        <input type="text" class="form-control"  name="txtAuthName" value="<?php echo htmlspecialchars($row['ten_tgia']); ?>">
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Ngày viết</span>
+                        <input type="date" class="form-control"  name="dateOfwriting" value="<?php echo htmlspecialchars($row['ngayviet']); ?>" required>
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Hình ảnh</span>
+                        <input type="text" class="form-control"  name="hinhanh" value="<?php echo htmlspecialchars($row['hinhanh']); ?>" >
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tóm tắt</span>
+                        <input type="text" class="form-control"  name="Summary" value="<?php echo htmlspecialchars($row['tomtat']); ?>">
+                    </div>
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Nội dung</span>
+                        <input type="text" class="form-control"  name="Content" value="<?php echo htmlspecialchars($row['noidung']); ?>">
                     </div>
                     <div class="form-group float-end">
                         <input type="submit" value="Lưu lại" class="btn btn-success">

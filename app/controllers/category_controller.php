@@ -11,11 +11,12 @@
 
         public function CategoryDel(){
             $conn = ConnectToDatabase();
-            
             if(isset($_GET['id'])){
                 $id = $_GET['id'];
                 Category::deleteCategory($conn, $id);
                 unset($_GET['id']);
+                header('Location: ./category_view.php');
+                exit;
             }
         }
 
@@ -23,21 +24,24 @@
             $conn = ConnectToDatabase();
             if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["txtCatName"])){
                 Category::addCategory($conn, $_GET['txtCatName']);
+                header('Location: ./category_view.php');
+                exit;
             }
         }
 
-        public function CategoryEdit($ma_tloai, $ten_tloai){
+        public function CategoryEdit(){
             $conn = ConnectToDatabase();
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['txtCatId']) && isset($_POST['txtCatName'])) {
                 $ma_tloai = mysqli_real_escape_string($conn, $_POST['txtCatId']);
                 $ten_tloai = mysqli_real_escape_string($conn, $_POST['txtCatName']);
                 Category::updateCategory($conn, $ma_tloai, $ten_tloai);
+                exit;
             }
-            return $ma_tloai;
         }
 
         public function getCatID(){
             $conn = ConnectToDatabase();
+            $ma_tloai ='';
             if (isset($_GET['id'])) {
                 $id = mysqli_real_escape_string($conn, $_GET['id']); 
                 $result = Category::getCategoryByID($conn, $id);
@@ -52,6 +56,7 @@
 
         public function getCatNameByID(){
             $conn = ConnectToDatabase();
+            $ten_tloai = '';
             if (isset($_GET['id'])) {
                 $id = mysqli_real_escape_string($conn, $_GET['id']); 
                 $result = Category::getCategoryByID($conn, $id);

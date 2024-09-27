@@ -1,7 +1,7 @@
 <?php 
-    include(__DIR__ . '/../../controllers/author_controller.php');
-    $controller = new AuthorController();
-    $result = $controller->AuthorAdd();
+    include(__DIR__ . '/../../controllers/article_controller.php');
+    $controller = new ArticleController();
+    $controller->ArticleAdd();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,13 +34,13 @@
                         <a class="nav-link" href="../../../public/index.php">Trang ngoài</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="./category_view.php">Thể loại</a>
+                        <a class="nav-link" href="./category_view.php">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="./author_view.php">Tác giả</a>
+                        <a class="nav-link" href="./author_view.php">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./author_view.php">Bài viết</a>
+                        <a class="nav-link  active fw-bold" href="./article_view.php">Bài viết</a>
                     </li>
                 </ul>
                 </div>
@@ -52,17 +52,52 @@
         <!-- <h3 class="text-center text-uppercase mb-3 text-primary">CẢM NHẬN VỀ BÀI HÁT</h3> -->
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Thêm mới tác giả</h3>
-                <form method="GET">
-                    <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
-                        <input type="text" formmethod="GET" class="form-control" name="txtAuthName" >
+                <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
+                <form method="POST">
 
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tiêu đề</span>
+                        <input type="text" formmethod="POST" class="form-control" name="txtTitle" required>
                     </div>
 
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên bài hát</span>
+                        <input type="text" formmethod="POST" class="form-control" name="txtSongName" required>
+                    </div>                    
+                    
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên thể loại</span>
+                        <input type="text" formmethod="POST" class="form-control" name="txtCatName" required>
+                    </div>                    
+                    
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
+                        <input type="text" formmethod="POST" class="form-control" name="txtAuthName" required>
+                    </div>                    
+                                     
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Ngày viết</span>
+                        <input type="date" formmethod="POST" class="form-control" name="dateOfwriting" required>
+                    </div>  
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Hình ảnh</span>
+                        <input type="text" formmethod="POST" class="form-control" name="songIMG" required >
+                    </div>
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Tóm tắt</span>
+                        <input type="text" formmethod="POST" class="form-control" name="Summary" required>
+                    </div>     
+
+                    <div class="input-group mt-3 mb-3">
+                        <span class="input-group-text" id="lblCatName">Nội dung</span>
+                        <input type="text" formmethod="POST" class="form-control" name="Content" required>
+                    </div>      
+
                     <div class="form-group  float-end ">
-                        <input type="submit" formmethod="GET" value="Thêm" class="btn btn-success">
-                        <a href="./author_view.php" class="btn btn-warning ">Quay lại</a>
+                        <input type="submit" formmethod="POST" value="Thêm" class="btn btn-success">
+                        <a href="./article_view.php" class="btn btn-warning ">Quay lại</a>
                     </div>
                 </form>
             </div>

@@ -1,8 +1,8 @@
 <?php 
-    include(__DIR__ . '/../../controllers/author_controller.php');
-    $controller = new AuthorController();
-    $result = $controller->AuthorList();
-    $controller->AuthorDel();
+    include(__DIR__ . '/../../controllers/article_controller.php');
+    $controller = new ArticleController();
+    $result = $controller->ArticleList();
+    $controller->ArticleDel();
 ?>
 
     <!DOCTYPE html>
@@ -11,7 +11,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Music for Life - Authors</title>
+        <title>Music for Life - Articles</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     </head>
@@ -37,10 +37,10 @@
                             <a class="nav-link " href="./category_view.php">Thể loại</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active fw-bold" href="./author_view.php">Tác giả</a>
+                            <a class="nav-link"  href="./author_view.php">Tác giả</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="./article_view.php">Bài viết</a>
+                            <a class="nav-link active fw-bold" href="./article_view.php">Bài viết</a>
                         </li>
                     </ul>
                     </div>
@@ -52,13 +52,20 @@
         <main class="container mt-5 mb-5">
             <div class="row">
                 <div class="col-sm">
-                    <h3 class="text-center text-uppercase fw-bold">Tác giả</h3>
-                    <a href="add_author_view.php" class="btn btn-success mb-3">Thêm tác giả</a>
+                    <h3 class="text-center text-uppercase fw-bold">Bài viết</h3>
+                    <a href="add_article_view.php" class="btn btn-success mb-3">Thêm bài viết</a>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Tiêu đề</th>
+                                <th scope="col">Tên bài hát</th>
+                                <th scope="col">Tên thể loại</th>
+                                <th scope="col">Tóm tắt</th>
+                                <th scope="col">Nội dung</th>
                                 <th scope="col">Tên tác giả</th>
+                                <th scope="col">Ngày viết</th>
+                                <th scope="col">Hình ảnh</th>
                                 <th scope="col">Sửa</th>
                                 <th scope="col">Xóa</th>
                             </tr>
@@ -67,10 +74,33 @@
                             <?php
                             if (mysqli_num_rows($result) > 0) {
                                 while ($row = mysqli_fetch_assoc($result)){
-                                    echo '<tr><th scope="row">'.$row["ma_tgia"].'</th><td>'.$row["ten_tgia"].'</td><td><a href="edit_author_view.php?id=' . $row["ma_tgia"] . '"><i class="fa-solid fa-pen-to-square"></i></a></td><td><a href="author_view.php?id='.$row['ma_tgia'].'" ><i class="fa-solid fa-trash"></i></a></td></tr>';
+                                    echo '<tr>
+                            <th scope="row">'.$row["ma_bviet"].'</th>
+                            <td>'.$row["tieude"].'</td>
+                            <td>'.$row["ten_bhat"].'</td>
+                            <td>'.$row["ten_tloai"].'</td>
+                            <td>'.$row["tomtat"].'</td>
+                            <td>'.$row["noidung"].'</td>
+                            <td>'.$row["ten_tgia"].'</td>
+                            <td>'.$row["ngayviet"].'</td>
+                            <td>
+                                <img src="'.$row['hinhanh'].'" class="img-fluid" alt="...">
+                            </td>
+                            <td>
+                                <a href="edit_article_view.php?id=' . $row["ma_bviet"] . '">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="article_view.php?id='.$row['ma_bviet'].'" >
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
+                            </td>
+                            </tr>';
                                 }
                             }
                             ?>
+
                         </tbody>
                     </table>
                 </div>
