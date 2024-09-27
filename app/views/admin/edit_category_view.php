@@ -1,6 +1,5 @@
 <?php 
     include(__DIR__ . '/../../controllers/category_controller.php');
-    // include('../../../config/database.php');
     $controller = new CategoryController();
     $ma_tloai = $controller->getCatID();
     $ten_tloai = $controller->getCatNameByID();
@@ -37,7 +36,7 @@
                             <a class="nav-link" href="../../../public/index.php">Trang ngoài</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active fw-bold" href="category.php">Thể loại</a>
+                            <a class="nav-link active fw-bold" href="./category_view.php">Thể loại</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="./author_view.php">Tác giả</a>

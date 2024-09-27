@@ -38,7 +38,7 @@
                 header("Location: ./author_view.php");
                 exit;
             }
-            return $ma_tgia;
+            // return $ma_tgia;
         }
 
         public function getAuthorID(){

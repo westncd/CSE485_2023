@@ -2,7 +2,7 @@
     include(__DIR__ . '/../../controllers/article_controller.php');
     $controller = new ArticleController();
     $row = $controller->ArticleDetail();
-    $controller->ArticleUpdate($row['tieude'],$row['ten_bhat'], $row['tomtat'], $row['noidung'], $row['ngayviet'],$row['hinhanh']);
+    $controller->ArticleEdit();
 ?>
 
 <!DOCTYPE html>

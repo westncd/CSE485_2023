@@ -42,6 +42,7 @@
 
         public function getCatID(){
             $conn = ConnectToDatabase();
+            $ma_tloai ='';
             if (isset($_GET['id'])) {
                 $id = mysqli_real_escape_string($conn, $_GET['id']); 
                 $result = Category::getCategoryByID($conn, $id);
@@ -56,6 +57,7 @@
 
         public function getCatNameByID(){
             $conn = ConnectToDatabase();
+            $ten_tloai = '';
             if (isset($_GET['id'])) {
                 $id = mysqli_real_escape_string($conn, $_GET['id']); 
                 $result = Category::getCategoryByID($conn, $id);
