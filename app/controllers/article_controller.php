@@ -50,20 +50,31 @@
             }
         }
 
+        
+        public function ArticleDetail(){
+            $conn = ConnectToDatabase();
+            if(isset($_GET['id'])){
+                $result = Article::getArticleDetail($conn, $_GET['id']);
+                return $result->fetch_assoc();
+            }
+        }
+
         public function ArticleEdit(){
             $conn = ConnectToDatabase();
-            if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['id']) && isset($_POST["txtTitle"]) && isset($_POST["txtSongName"])&& isset($_POST["txtCatName"])&& isset($_POST["txtAuthName"])&& isset($_POST["Summary"])&& isset($_POST["Content"])&& isset($_POST["dateOfwriting"])&& isset($_POST["songIMG"])){
-                $ma_bviet = $_POST['txtArtcleID'];
-                $tieude = mysqli_real_escape_string($conn, $_POST['txtTitle']);
+
+            if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['txtTitle']) && isset($_POST["txtSongName"]) && isset($_POST["txtCatName"])&& isset($_POST["txtAuthName"])&& isset($_POST["Summary"])&& isset($_POST["Content"])&& isset($_POST["dateOfwriting"])&& isset($_POST["hinhanh"])){
+
+                $ma_bviet = mysqli_real_escape_string($conn,$_POST['txtArtcleID']);
+                $tieude = mysqli_real_escape_string($conn,$_POST['txtTitle']);
                 $ten_bhat = mysqli_real_escape_string($conn, $_POST['txtSongName']);
                 $tomtat = mysqli_real_escape_string($conn, $_POST['Summary']);
                 $noidung = mysqli_real_escape_string($conn, $_POST['Content']);
                 $ngayviet = mysqli_real_escape_string($conn, $_POST['dateOfwriting']);
-                $hinhanh = mysqli_real_escape_string($conn, $_POST['songIMG']);
+                $hinhanh = mysqli_real_escape_string($conn, $_POST['hinhanh']);
 
                 $resulttloai = Category::checkTloai($conn, $_POST['txtCatName']);
                 $tloai = $resulttloai->fetch_assoc();
-
+  
                 $resulttgia = Author::checkTgia($conn, $_POST['txtAuthName']);
                 $tgia =  $resulttgia->fetch_assoc();
 
@@ -71,24 +82,14 @@
                     Category::addCategory($conn, $_POST['txtCatName']);
                 if($tgia['is_exists'] == 0)
                     Author::addAuthor($conn, $_POST['txtAuthName']);
-                
+
                 $id_tloai = Category::getCategoryID($conn, $_POST['txtCatName']);
                 $id_tgia = Author::getAuthorID($conn, $_POST['txtAuthName']);
 
                 Article::updateArticle($conn, $ma_bviet, $tieude, $ten_bhat, $id_tloai, $tomtat, $noidung, $id_tgia, $ngayviet, $hinhanh);
-                header("Location: ./author_view.php");
-                exit;
+
+                header("Location: ./article_view.php");
             }
         }
-
-
-        public function ArticleDetail(){
-            $conn = ConnectToDatabase();
-            if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['id'])){
-                $result = Article::getArticleDetail($conn, $_GET['id']);
-                return $result->fetch_assoc();
-            }
-        }
-
     }
 ?>

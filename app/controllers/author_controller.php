@@ -29,7 +29,7 @@
             }
         }
 
-        public function AuthorEdit($ma_tgia, $ten_tgia){
+        public function AuthorEdit(){
             $conn = ConnectToDatabase();
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['txtAuthId']) && isset($_POST['txtAuthName'])) {
                 $ma_tgia = mysqli_real_escape_string($conn, $_POST['txtAuthId']);
@@ -38,7 +38,6 @@
                 header("Location: ./author_view.php");
                 exit;
             }
-            // return $ma_tgia;
         }
 
         public function getAuthorID(){

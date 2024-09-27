@@ -70,8 +70,6 @@
                                     echo '<tr><th scope="row">'.$row["ma_tgia"].'</th><td>'.$row["ten_tgia"].'</td><td><a href="edit_author_view.php?id=' . $row["ma_tgia"] . '"><i class="fa-solid fa-pen-to-square"></i></a></td><td><a href="author_view.php?id='.$row['ma_tgia'].'" ><i class="fa-solid fa-trash"></i></a></td></tr>';
                                 }
                             }
-
-                            
                             ?>
                         </tbody>
                     </table>

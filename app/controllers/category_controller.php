@@ -29,7 +29,7 @@
             }
         }
 
-        public function CategoryEdit($ma_tloai, $ten_tloai){
+        public function CategoryEdit(){
             $conn = ConnectToDatabase();
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['txtCatId']) && isset($_POST['txtCatName'])) {
                 $ma_tloai = mysqli_real_escape_string($conn, $_POST['txtCatId']);
@@ -37,7 +37,6 @@
                 Category::updateCategory($conn, $ma_tloai, $ten_tloai);
                 exit;
             }
-            return $ma_tloai;
         }
 
         public function getCatID(){

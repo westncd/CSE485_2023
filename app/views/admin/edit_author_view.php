@@ -1,10 +1,9 @@
 <?php 
     include(__DIR__ . '/../../controllers/author_controller.php');
-    // include('../../../config/database.php');
     $controller = new AuthorController();
     $ma_tgia = $controller->getAuthorID();
     $ten_tgia = $controller->getAuthorNameByID();
-    $result = $controller->AuthorEdit($ma_tgia, $ten_tgia);
+    $result = $controller->AuthorEdit();
 ?>
 
 <!DOCTYPE html>

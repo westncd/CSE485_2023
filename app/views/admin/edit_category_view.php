@@ -3,7 +3,7 @@
     $controller = new CategoryController();
     $ma_tloai = $controller->getCatID();
     $ten_tloai = $controller->getCatNameByID();
-    $result = $controller->CategoryEdit($ma_tloai, $ten_tloai);
+    $result = $controller->CategoryEdit();
 ?>
 
 <!DOCTYPE html>
