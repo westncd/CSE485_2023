@@ -15,6 +15,8 @@
                 $id = $_GET['id'];
                 Category::deleteCategory($conn, $id);
                 unset($_GET['id']);
+                header('Location: ./category_view.php');
+                exit;
             }
         }
 
@@ -22,6 +24,8 @@
             $conn = ConnectToDatabase();
             if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["txtCatName"])){
                 Category::addCategory($conn, $_GET['txtCatName']);
+                header('Location: ./category_view.php');
+                exit;
             }
         }
 
@@ -31,6 +35,7 @@
                 $ma_tloai = mysqli_real_escape_string($conn, $_POST['txtCatId']);
                 $ten_tloai = mysqli_real_escape_string($conn, $_POST['txtCatName']);
                 Category::updateCategory($conn, $ma_tloai, $ten_tloai);
+                exit;
             }
             return $ma_tloai;
         }

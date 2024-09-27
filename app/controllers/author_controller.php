@@ -15,6 +15,8 @@
                 $id = $_GET['id'];
                 Author::deleteAuthor($conn, $id);
                 unset($_GET['id']);
+                header('Location: ./author_view.php');
+                exit;
             }
         }
 
@@ -22,17 +24,21 @@
             $conn = ConnectToDatabase();
             if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["txtAuthName"])){
                 Author::addAuthor($conn, $_GET['txtAuthName']);
+                header('Location: ./author_view.php');
+                exit;
             }
         }
 
-        public function AuthorEdit($ma_tloai, $ten_tloai){
+        public function AuthorEdit($ma_tgia, $ten_tgia){
             $conn = ConnectToDatabase();
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['txtAuthId']) && isset($_POST['txtAuthName'])) {
-                $ma_tloai = mysqli_real_escape_string($conn, $_POST['txtAuthId']);
-                $ten_tloai = mysqli_real_escape_string($conn, $_POST['txtAuthName']);
-                Author::updateAuthor($conn, $ma_tloai, $ten_tloai);
+                $ma_tgia = mysqli_real_escape_string($conn, $_POST['txtAuthId']);
+                $ten_tgia = mysqli_real_escape_string($conn, $_POST['txtAuthName']);
+                Author::updateAuthor($conn, $ma_tgia, $ten_tgia);
+                header("Location: ./author_view.php");
+                exit;
             }
-            return $ma_tloai;
+            return $ma_tgia;
         }
 
         public function getAuthorID(){
@@ -53,7 +59,6 @@
             if (isset($_GET['id'])) {
                 $id = mysqli_real_escape_string($conn, $_GET['id']); 
                 $result = Author::getAuthorByID($conn, $id);
-                
                 if ($result && mysqli_num_rows($result) > 0) {
                     $row = mysqli_fetch_assoc($result);
                     $ten_tgia = $row['ten_tgia'];
