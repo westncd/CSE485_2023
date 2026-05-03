@@ -210,4 +210,4 @@ Truy cập ứng dụng tại: `http://localhost:8000`
 
 ## 📄 License
 
-Dự án phục vụ mục đích học tập môn **CSE485 – Công nghệ Web**, Trường Đại học Cần Thơ.
+Dự án phục vụ mục đích học tập môn **CSE485 – Công nghệ Web**, Trường Đại học Thủy Lợi.
