@@ -1,47 +1,109 @@
-# CSE485 Project - Music Management System
+# README.md - CSE485 Project - Music Management System (Laravel)
 
 ## Team Members
 - Bùi Đức Tùng
 - Đào Duy Minh
 - Nguyễn Ngọc Bảo Tuấn
 
-## Architecture: MVC Pattern
+## Architecture: Laravel MVC Framework
 
-This project is built using the **Model-View-Controller (MVC)** architectural pattern, ensuring a clean separation of concerns, maintainability, and scalability.
+This project has been migrated from vanilla PHP MVC to **Laravel Framework**, providing better structure, security, and maintainability.
 
-### 1. Models (`app/models`)
-Responsible for data management and business logic.
-- **Key Files**: 
-  - `article.php`: Represents article data and operations.
-  - `author.php`: Manages author information.
-  - `category.php`: Handles music categories.
-- These models handle interaction with the database and data processing.
+### Technology Stack
+- **Framework**: Laravel 13.x
+- **Language**: PHP 8.5
+- **Database**: MySQL (database: `btth01_cse485`)
+- **Frontend**: Bootstrap 5.3, Font Awesome 6.3
+- **Template Engine**: Blade
 
-### 2. Views (`app/views`)
-Responsible for the user interface and presentation layer.
-- **Public Views**: 
-  - `detail.php`: Displays article details.
-  - `login.php`: User authentication interface.
-- **Admin Views**: Located in `app/views/admin/`, handling the back-office interface for resource management.
+### 1. Models (`app/Models`)
+Eloquent ORM models with relationships.
+- **BaiViet.php**: Bài viết (articles) - belongsTo TacGia, TheLoai
+- **TacGia.php**: Tác giả (authors) - hasMany BaiViet
+- **TheLoai.php**: Thể loại (categories) - hasMany BaiViet
 
-### 3. Controllers (`app/controllers`)
-Acts as the intermediary between Models and Views. Processes user requests and returns the appropriate response.
-- **Key Controllers**: 
-    - `article_controller.php`: Manages article operations (CRUD).
-    - `author_controller.php`: Manages author data.
-    - `category_controller.php`: Manages categories.
-    - `admin_home_controller.php`: Controls the admin dashboard.
+### 2. Views (`resources/views`)
+Blade template views with layout inheritance.
+- **layouts/app.blade.php**: Public layout
+- **layouts/admin.blade.php**: Admin layout
+- **home.blade.php**: Homepage with carousel
+- **detail.blade.php**: Article detail
+- **auth/login.blade.php**: Login page
+- **admin/**: Dashboard, Categories, Authors, Articles CRUD views
+
+### 3. Controllers (`app/Http/Controllers`)
+- **HomeController**: Public homepage
+- **ArticleController**: Article detail view
+- **AuthController**: Login/Logout
+- **Admin/DashboardController**: Admin dashboard
+- **Admin/CategoryController**: Category CRUD
+- **Admin/AuthorController**: Author CRUD
+- **Admin/ArticleController**: Article CRUD
+
+### 4. Routes (`routes/web.php`)
+- Public: `/`, `/detail/{song}`, `/login`
+- Admin (protected): `/admin/*`
 
 ## Project Structure
 
 ```
 CSE485_2023/
 ├── app/
-│   ├── controllers/   # Controller logic (Business Logic Layer)
-│   ├── models/        # Data models (Data Access Layer)
-│   └── views/         # UI Templates (Presentation Layer)
-│       └── admin/     # Admin-specific views
-├── config/            # Configuration files (DB connection, constants)
-├── public/            # Public assets (Images, CSS, JS)
-└── README.md          # Project documentation
+│   ├── Http/Controllers/      # Controllers
+│   │   ├── Admin/             # Admin CRUD controllers
+│   │   ├── HomeController.php
+│   │   ├── ArticleController.php
+│   │   └── AuthController.php
+│   └── Models/                # Eloquent Models
+│       ├── BaiViet.php
+│       ├── TacGia.php
+│       └── TheLoai.php
+├── config/                    # Laravel configuration
+├── database/
+│   ├── migrations/            # Database migrations
+│   └── seeders/               # Database seeders
+├── public/                    # Public assets (images, CSS)
+├── resources/views/           # Blade templates
+│   ├── layouts/               # Layout templates
+│   ├── admin/                 # Admin views
+│   └── auth/                  # Auth views
+├── routes/web.php             # Route definitions
+├── .env                       # Environment configuration
+└── README.md
 ```
+
+## Getting Started
+
+### Prerequisites
+- PHP >= 8.1
+- Composer
+- MySQL
+
+### Installation
+```bash
+# Install dependencies
+composer install
+
+# Configure database in .env
+DB_CONNECTION=mysql
+DB_DATABASE=btth01_cse485
+DB_USERNAME=root
+DB_PASSWORD=
+
+# Run migrations
+php artisan migrate
+
+# Seed default users
+php artisan db:seed
+
+# Start development server
+php artisan serve
+```
+
+### Default Accounts
+| Username | Password  | Role  |
+|----------|-----------|-------|
+| admin    | admin123  | Admin |
+| user     | user123   | User  |
+
+Access admin panel at: `http://localhost:8000/admin`
